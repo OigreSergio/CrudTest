@@ -23,34 +23,25 @@ public class ControllerStudent {
 
     @GetMapping("/all")
     public List<Student> findAllStudents(){
-        return repo.findAll();
+        return service.getAllStudents();
     }
 
     @GetMapping("/{id}")
-    public Optional<Student> getStudent (@PathVariable long id){
-        if(repo.existsById(id)){
-            return repo.findById(id);
-        } else {
-            return Optional.of(new Student());
-        }
+    public Student getStudent (@PathVariable long id){
+        return service.getStudentById(id);
     }
 
     @PatchMapping("/{id}")
-    public Student updateStudentName (@PathVariable long id, @RequestBody Student student){
-        if(repo.existsById(id)){
-            return repo.save(student);
-        } else {
-            return new Student();
-        }
+    public Student updateStudentName (@PathVariable long id, @RequestParam String name, @RequestParam String surname){
+        return service.updateStudentGeneralInfo(id, name, surname);
     }
 
-    @PatchMapping("/{id}/activate")
-    public Student activateStudent (@PathVariable long id, @RequestParam boolean working){
-       return service.activateWork(id, working);
+    @PatchMapping("/{id}/active")
+    public Student activateStudent (@PathVariable long id){
+       return service.activateWork(id);
     }
     @DeleteMapping("/{id}")
     public List<Student> deleteStudent(@PathVariable long id){
-        repo.deleteById(id);
-        return repo.findAll();
+        return service.deleteAStudent(id);
     }
 }
