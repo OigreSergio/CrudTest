@@ -15,7 +15,8 @@ public class ServiceStudent {
         if (repo.existsById(id)) {
             Student activeStudent = repo.findById(id).get();
             activeStudent.setWorking(true);
-            return activeStudent;
+            activeStudent.setId(id);
+            return repo.save(activeStudent);
         } else {
             return new Student();
         }
