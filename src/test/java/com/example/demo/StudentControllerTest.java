@@ -32,7 +32,7 @@ public class StudentControllerTest {
     private ObjectMapper objectMapper;
 
 
-    private final Student testStudent = new Student(1L, "Sio", "Worro", false);
+    private final Student testStudent = new Student(1L, "Ser", "Sergio", false);
 
     @Test
     public void testCreateStudentCreateAStudent() throws Exception {
@@ -73,7 +73,7 @@ public class StudentControllerTest {
                 .andExpect(status().isOk())
                 .andReturn();
         Student response = objectMapper.readValue(result.getResponse().getContentAsString(), Student.class);
-        assertEquals(response.getName(), "Sio");
+        assertEquals(response.getName(), "Ser");
     }
 
     @Test
@@ -87,7 +87,7 @@ public class StudentControllerTest {
                 .andExpect(status().isOk())
                 .andReturn();
         Student response = objectMapper.readValue(result.getResponse().getContentAsString(), Student.class);
-        assertEquals(response.getSurname(), "Worro");
+        assertEquals(response.getSurname(), "Sergio");
     }
 
     @Test
@@ -154,7 +154,7 @@ public class StudentControllerTest {
         service.createStudent(testStudent);
         String studentJSON = objectMapper.writeValueAsString(testStudent);
         MvcResult result = this.mockMvc.perform(patch("/students/{id}", testStudent.getId())
-                        .param("name","Alessio")
+                        .param("name","Sergio")
                         .param("surname",testStudent.getSurname())
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(studentJSON))
@@ -162,7 +162,7 @@ public class StudentControllerTest {
                 .andExpect(status().isOk())
                 .andReturn();
         Student response = objectMapper.readValue(result.getResponse().getContentAsString(), Student.class);
-        assertEquals(response.getName(), "Alessio");
+        assertEquals(response.getName(), "Sergio");
     }
 
     @Test
@@ -170,15 +170,15 @@ public class StudentControllerTest {
         service.createStudent(testStudent);
         String studentJSON = objectMapper.writeValueAsString(testStudent);
         MvcResult result = this.mockMvc.perform(patch("/students/{id}", testStudent.getId())
-                        .param("name","Alessio")
-                        .param("surname", "Delle Donne")
+                        .param("name","Sergio")
+                        .param("surname", "Hanganu")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(studentJSON))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andReturn();
         Student response = objectMapper.readValue(result.getResponse().getContentAsString(), Student.class);
-        assertEquals(response.getSurname(),"Delle Donne");
+        assertEquals(response.getSurname(),"Hanganu");
     }
 
     @Test
@@ -223,7 +223,7 @@ public class StudentControllerTest {
     @Test
     public void testDeleteStudentRemovesASpecificStudent() throws Exception {
         service.createStudent(testStudent);
-        Student otherStudent = new Student(2,"Alessio", "Delle Donne", true);
+        Student otherStudent = new Student(2,"Sergio", "Hanganu", true);
         service.createStudent(otherStudent);
         MvcResult result = this.mockMvc.perform((delete("/students/{id}", testStudent.getId())))
                 .andDo(print())

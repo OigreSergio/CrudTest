@@ -38,7 +38,7 @@ public class ControllerStudent {
 
     @PatchMapping("/{id}/active")
     public Student activateStudent (@PathVariable long id){
-       return service.activateWork(id);
+        return service.activateWork(id);
     }
     @DeleteMapping("/{id}")
     public List<Student> deleteStudent(@PathVariable long id){

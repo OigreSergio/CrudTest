@@ -42,13 +42,13 @@ public class StudentServiceTest {
     public void testCreateAStudent() {
         Student testStudent = new Student();
         testStudent.setName("Sio");
-        testStudent.setSurname("Worro");
+        testStudent.setSurname("Sergio");
         testStudent.setWorking(true);
 
         Student inserted = new Student();
         inserted.setId(1);
         inserted.setName("Sio");
-        inserted.setSurname("Worro");
+        inserted.setSurname("Sergio");
         inserted.setWorking(true);
 
         when(repo.save(testStudent))
@@ -63,13 +63,13 @@ public class StudentServiceTest {
         Student student1 = new Student();
         student1.setId(1);
         student1.setName("Sio");
-        student1.setSurname("Worro");
+        student1.setSurname("Sergio");
         student1.setWorking(true);
 
         Student student2 = new Student();
         student2.setId(2);
-        student2.setName("Alessio");
-        student2.setSurname("Delle Donne");
+        student2.setName("Sergio");
+        student2.setSurname("Hanganu");
         student2.setWorking(true);
 
         List<Student> students = new ArrayList<>();
@@ -87,13 +87,13 @@ public class StudentServiceTest {
         Student student = new Student();
         student.setId(1);
         student.setName("Sio");
-        student.setSurname("Worro");
+        student.setSurname("Sergiio");
         student.setWorking(false);
 
         Student inserted = new Student();
         inserted.setId(1L);
         inserted.setName("Sio");
-        inserted.setSurname("Worro");
+        inserted.setSurname("Sergio");
         inserted.setWorking(true);
         when(repo.existsById(1l))
                 .thenReturn(true);
@@ -110,7 +110,7 @@ public class StudentServiceTest {
         Student student = new Student();
         student.setId(1);
         student.setName("Sio");
-        student.setSurname("Worro");
+        student.setSurname("Sergio");
         student.setWorking(false);
 
         when(repo.existsById(1L))
@@ -127,7 +127,7 @@ public class StudentServiceTest {
         Student student = new Student();
         student.setId(1);
         student.setName("Sio");
-        student.setSurname("Worro");
+        student.setSurname("Sergio");
         student.setWorking(true);
 
 
